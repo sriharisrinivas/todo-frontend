@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
 
 const initialLoginFields = {
-    userName: 'sriharisrinivas46876',
-    password: 'Srihari999'
+    userName: '',
+    password: ''
 };
 
 const initialSignUpFields = {
