@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 function ContentContainer() {
     return (
         <>
-            <Row className="d-flex" style={{ width: "84%"}}>
+            <Row className="d-flex" style={{ width: "82%"}}>
                 <Col className='home-container pt-3'>
                     <AddTaskComponent />
                     <br />
