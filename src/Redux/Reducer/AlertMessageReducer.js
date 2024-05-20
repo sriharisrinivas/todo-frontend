@@ -9,7 +9,6 @@ const initialState = {
 
 export const AlertMessageReducer = (state = initialState, action) => {
     const { payload } = action;
-    console.log("🚀 ~ AlertMessageReducer ~ payload:", payload)
     switch (action.type) {
         case REDUX_CONSTANTS.UPDATE_ALERT_MESSAGE:
             return {

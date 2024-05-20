@@ -19,7 +19,7 @@ function TaskList() {
             <Row className='card task-card mt-2 mb-2'>
                 <Col className="task-list-container">
 
-                    <Row>
+                    <Row style={{ width: "100%" }}>
                         {todosList.map(item =>
                             // <Col sm={12} >
                             <TaskItem item={item} />

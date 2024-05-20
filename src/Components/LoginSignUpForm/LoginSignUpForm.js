@@ -48,6 +48,10 @@ function LoginSignUpForm(props) {
     };
 
     const registerUser = async () => {
+        if (userName == '' || password == '') {
+            setErrorMessage("Please Enter Mandatory Fields.")
+            return;
+        }
         let options = {
             method: 'POST',
             headers: {
@@ -103,7 +107,6 @@ function LoginSignUpForm(props) {
         } else {
             setErrorMessage(parsedResponse.message);
         }
-        console.log("🚀 ~ loginUser ~ response:", response);
     };
 
     const onSubmit = (e) => {
@@ -135,14 +138,14 @@ function LoginSignUpForm(props) {
                         <Col sm="12" md="6">
                             <Form.Group className='mt-3'>
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control className="todo-field" name={"firstName"} value={signUpFields.firstName} onChange={handleChange} size='lg' />
+                                <Form.Control placeholder='Enter First Name' className="todo-field" name={"firstName"} value={signUpFields.firstName} onChange={handleChange} size='lg' />
                             </Form.Group>
                         </Col>
 
                         <Col sm="12" md="6">
                             <Form.Group className='mt-3'>
                                 <Form.Label>Last Name</Form.Label>
-                                <Form.Control className="todo-field" name={"lastName"} value={signUpFields.lastName} onChange={handleChange} size='lg' />
+                                <Form.Control placeholder='Enter Last Name' className="todo-field" name={"lastName"} value={signUpFields.lastName} onChange={handleChange} size='lg' />
                             </Form.Group>
                         </Col>
                     </Row>

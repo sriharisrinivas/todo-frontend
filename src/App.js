@@ -7,35 +7,36 @@ import { Bars } from 'react-loader-spinner';
 import { BrowserRouter, Route, Switch, Routes } from 'react-router-dom';
 import Login from './Components/Login/Login';
 import { store } from './Redux/store';
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import AlertDismissible from './Components/Alert/AlertMessage';
+import { useEffect } from 'react';
+import { updateContentContainerHeight } from './Redux/Action/SideBarAction';
 
 function App() {
   const alertMessaage = useSelector(state => state.AlertMessageReducer);
   const loaderState = useSelector(state => state.loaderReducer);
-  console.log("🚀 ~ App ~ loaderState:", loaderState);
 
   return (
     <BrowserRouter>
-      {loaderState.loading == true &&
-        <div style={{ position: "relative"}}>
+      {/* {loaderState.loading == true &&
+        <div style={{ position: "relative" }}>
           <Bars
             height="100vh"
             width="80"
             color="#f7931e"
             ariaLabel="bars-loading"
-            wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", left: "46%", zIndex: 9999 }}
+            wrapperStyle={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", zIndex: 9999 }}
             wrapperClass=""
             visible={true}
           />
         </div>
-      }
+      } */}
 
       {/* <Home /> */}
       {/* <Login /> */}
-      <div className="alert-container">
+      {/* <div className="alert-container">
         <AlertDismissible {...alertMessaage} />
-      </div>
+      </div> */}
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/home" element={<Home />} />

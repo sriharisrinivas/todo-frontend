@@ -82,7 +82,18 @@ i {
 
 
 /* Home Container */
-.home-container {
+
+@media (max-width: 576px) {
+    .sidebar-todo {
+        display: none !important;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.content-container {
     height: 92vh;
     padding: 0 15px 0px 40px;
     /* width: 100%; */
@@ -91,15 +102,18 @@ i {
 
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
 .main-content-container {
     /* height: 100vh;
     width: 100%;
     padding-top: 50px;
     overflow: scroll; */
+    display: flex;
+}
+
+@media (max-width: 576px) {
+    .main-content-container {
+        width: 100% !important;
+    }
 }
 
 
@@ -107,8 +121,8 @@ i {
 /* Add Task Component */
 
 .task-card {
-    padding: 25px;
-    gap: 16px;
+    padding: 8px;
+    gap: 9px;
 }
 
 .task-main-title,
@@ -171,8 +185,8 @@ i {
 }
 
 .task-name-container {
-    min-width: 130px;
-    max-width: 130px;
+    /* min-width: 130px;
+    max-width: 130px; */
 }
 
 .task-edit-btn {
@@ -183,14 +197,15 @@ i {
 
 @media (max-width: 576px) {
     .task-item-container {
-        flex-direction: column;
-        align-items: self-start;
+        /* flex-direction: column; */
+        /* align-items: self-start; */
     }
 
     .task-header-and-value-wrapper {
-        flex-direction: row;
+        display: none;
+        /* flex-direction: row;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-between; */
     }
 
     .task-heading {

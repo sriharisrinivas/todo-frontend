@@ -113,18 +113,24 @@ function TaskItem({ item }) {
                     }
                 </Col>
 
-                <Col className='d-flex align-items-center'>
+                <Col className='d-flex align-items-center justify-content-end'>
                     {/* {
                         item.rowSelected ?
                             <button className='task-edit-btn btn btn-primary mb-1' onClick={() => { onUpdate(item); }}>Update</button> :
                             <button className='task-edit-btn btn btn-primary mb-1' onClick={() => { onEditTask(item); }}>Edit</button>
                     } */}
-                    <button disabled={item["STATUS"] != 1} className='task-edit-btn btn btn-primary' onClick={() => { onEditTask(item); }}>Edit</button>
+                    {/* <button disabled={item["STATUS"] != 1} className='task-edit-btn btn btn-primary' onClick={() => { onEditTask(item); }}>Edit</button> */}
+
+                    {item["STATUS"] != 1 &&
+                        <div className='ms-2 mt-1'>
+                            <i disabled={item["STATUS"] != 1} className='fa fa-edit mt-1' onClick={() => { onEditTask(item); }}></i>
+                        </div>
+                    }
 
                     {item["STATUS"] != 3 &&
-                        <Col className='ms-2 mt-1'>
+                        <div className='ms-2 mt-1'>
                             <i className='fa fa-trash mt-1' onClick={() => { onDeleteTask(item); }}></i>
-                        </Col>
+                        </div>
                     }
 
                 </Col>

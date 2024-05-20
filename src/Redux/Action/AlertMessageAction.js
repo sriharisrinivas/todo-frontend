@@ -1,7 +1,6 @@
 import { REDUX_CONSTANTS } from "../reduxConstants";
 
 export const renderAlertMessageAction = payload => {
-    console.log("🚀 ~ renderAlertMessageAction ~ payload:", payload)
     return {
         type: REDUX_CONSTANTS.UPDATE_ALERT_MESSAGE,
         payload: payload

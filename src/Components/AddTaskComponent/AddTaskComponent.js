@@ -13,7 +13,7 @@ const initialFields = {
     severity: 1,
     category: 1,
     taskCreatedDate: '',
-    taskDate: ''
+    taskDate: new Date()
 };
 
 function AddTaskComponent({ selectedRowDetails, callBack }) {
@@ -50,7 +50,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
         dispatch(startLoaderAction());
         await fetch(url, options);
         dispatch(stopLoaderAction());
-        
+
         setFields(initialFields);
         dispatch(fetchTodos());
 
@@ -96,7 +96,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label className='me-3' onClick={() => { setAdvancedOptions(!advancedOptions); }}>Advanced options</Form.Label>
+                            <Form.Label className='me-3' onClick={() => { setAdvancedOptions(!advancedOptions); }}>{!advancedOptions ? "More" : "Less"} options</Form.Label>
                             {advancedOptions ?
                                 <i class="fa-solid fa-caret-up" onClick={() => { setAdvancedOptions(false); }}></i> :
                                 <i class="fa-solid fa-caret-down" onClick={() => { setAdvancedOptions(true); }}></i>
@@ -141,6 +141,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
                                     <DatePicker
                                         showIcon
                                         toggleCalendarOnIconClick
+                                        minDate={new Date()}
                                         selected={fields.taskDate}
                                         onChange={(date) => setFields(prev => ({ ...prev, taskDate: date }))}
                                     />
