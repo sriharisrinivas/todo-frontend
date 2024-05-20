@@ -10,7 +10,7 @@ export const loaderReducer = (state = initialState, action) => {
         case REDUX_CONSTANTS.START_LOADER:
             return { ...state, loading: true };
         case REDUX_CONSTANTS.STOP_LOADER:
-            return { ...state, loading: true };
+            return { ...state, loading: false };
         default:
             return { ...state };
     }
