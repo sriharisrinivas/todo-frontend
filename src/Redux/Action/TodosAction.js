@@ -1,6 +1,7 @@
 import { API_END_POINTS, CONSTANTS } from "../../config";
 import { REDUX_CONSTANTS } from "../reduxConstants";
-import axios from "axios"
+import axios from "axios";
+import { startLoaderAction, stopLoaderAction } from "./LoaderAction";
 
 export const fetchTodosOnSuccess = payload => {
     return {
@@ -12,6 +13,7 @@ export const fetchTodosOnSuccess = payload => {
 
 export const fetchTodos = (payload) => {
     return async function (dispatch) {
+        dispatch(startLoaderAction());
         let url = CONSTANTS.SERVICE_URL + API_END_POINTS.FETCH_TODOS;
         let options = {
             method: 'GET',
@@ -21,6 +23,7 @@ export const fetchTodos = (payload) => {
             },
         };
         let response = await fetch(url, options);
+        dispatch(stopLoaderAction());
         response = await response.json();
         dispatch(fetchTodosOnSuccess(response));
     };

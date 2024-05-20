@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { API_END_POINTS, CONSTANTS } from '../../config';
 import { useDispatch } from 'react-redux';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
+import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
 
 const initialFields = {
     title: "",
@@ -46,8 +47,9 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
             },
             body: JSON.stringify(payload)
         };
-
+        dispatch(startLoaderAction());
         await fetch(url, options);
+        dispatch(stopLoaderAction());
         
         setFields(initialFields);
         dispatch(fetchTodos());

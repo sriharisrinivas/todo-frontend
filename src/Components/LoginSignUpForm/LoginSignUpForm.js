@@ -3,11 +3,14 @@ import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { API_END_POINTS, CONSTANTS } from '../../config';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeRenderAlertMsgAction, renderAlertMessageAction } from '../../Redux/Action/AlertMessageAction';
+import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
 // import { useHistory } from 'react-router-dom';
 
 const initialLoginFields = {
-    userName: 'sriharisrinivas46876',
-    password: 'Srihari999'
+    userName: '',
+    password: ''
 };
 
 const initialSignUpFields = {
@@ -23,8 +26,10 @@ function LoginSignUpForm(props) {
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
     const [formType, setFormType] = useState("login");
-    const [alertMessage, setAlertMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [loginFields, setLoginFields] = useState(initialLoginFields);
     const [signUpFields, setSignUpFields] = useState(initialSignUpFields);
 
@@ -36,6 +41,12 @@ function LoginSignUpForm(props) {
         }
     };
 
+    const removeAlertMessage = () => {
+        setTimeout(() => {
+            dispatch(removeRenderAlertMsgAction());
+        }, 2000);
+    };
+
     const registerUser = async () => {
         let options = {
             method: 'POST',
@@ -45,12 +56,23 @@ function LoginSignUpForm(props) {
             body: JSON.stringify(signUpFields)
         };
         let url = CONSTANTS.SERVICE_URL + API_END_POINTS.CREATE_USER;
-        let response = await fetch(url, options);
+        dispatch(startLoaderAction());
         let parsedResponse = await response.json();
+        let response = await fetch(url, options);
+        dispatch(stopLoaderAction());
+
         if (response.status == 200) {
-            setAlertMessage("");
+            setErrorMessage("");
+            dispatch(renderAlertMessageAction({
+                message: parsedResponse.message,
+                heading: "Register",
+                show: true
+            }));
+            removeAlertMessage();
+            setFormType("login");
+            setSignUpFields(initialSignUpFields);
         } else {
-            setAlertMessage(parsedResponse.message);
+            setErrorMessage(parsedResponse.message);
         }
     };
 
@@ -63,14 +85,25 @@ function LoginSignUpForm(props) {
             body: JSON.stringify(loginFields)
         };
         let url = CONSTANTS.SERVICE_URL + API_END_POINTS.LOGIN;
+        dispatch(startLoaderAction());
         let response = await fetch(url, options);
         let parsedResponse = await response.json();
+        dispatch(stopLoaderAction());
         if (response.status == 200) {
-            setAlertMessage("");
-            sessionStorage.setItem("token", parsedResponse.jwtToken)
-            navigate("/home");
+            setErrorMessage("");
+            dispatch(renderAlertMessageAction({
+                message: "Login SuccessFul. Redirecting to home page in couple of seconds",
+                heading: "Login",
+                show: true
+            }));
+            removeAlertMessage();
+            sessionStorage.setItem("token", parsedResponse.jwtToken);
+            setTimeout(() => {
+                navigate("/home");
+            }, 2000);
+            setLoginFields(initialLoginFields);
         } else {
-            setAlertMessage(parsedResponse.message);
+            setErrorMessage(parsedResponse.message);
         }
         console.log("🚀 ~ loginUser ~ response:", response);
     };
@@ -92,8 +125,8 @@ function LoginSignUpForm(props) {
             <Form.Group className='mt-3'>
                 <Form.Label><span className='field-required'>* </span>User Name</Form.Label>
                 {formType == "login" ?
-                    <Form.Control  className="todo-field" size="lg" type="text" name={"userName"} value={loginFields.userName} onChange={handleChange} placeholder='Enter User Name...' /> :
-                    <Form.Control  className="todo-field" size="lg" type="text" name={"userName"} value={signUpFields.userName} onChange={handleChange} placeholder='Enter User Name...' />
+                    <Form.Control className="todo-field" size="lg" type="text" name={"userName"} value={loginFields.userName} onChange={handleChange} placeholder='Enter User Name...' /> :
+                    <Form.Control className="todo-field" size="lg" type="text" name={"userName"} value={signUpFields.userName} onChange={handleChange} placeholder='Enter User Name...' />
                 }
             </Form.Group>
 
@@ -103,14 +136,14 @@ function LoginSignUpForm(props) {
                         <Col sm="12" md="6">
                             <Form.Group className='mt-3'>
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control  className="todo-field" name={"firstName"} value={signUpFields.firstName} onChange={handleChange} size='lg' />
+                                <Form.Control className="todo-field" name={"firstName"} value={signUpFields.firstName} onChange={handleChange} size='lg' />
                             </Form.Group>
                         </Col>
 
                         <Col sm="12" md="6">
                             <Form.Group className='mt-3'>
                                 <Form.Label>Last Name</Form.Label>
-                                <Form.Control  className="todo-field" name={"lastName"} value={signUpFields.lastName} onChange={handleChange} size='lg' />
+                                <Form.Control className="todo-field" name={"lastName"} value={signUpFields.lastName} onChange={handleChange} size='lg' />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -133,12 +166,12 @@ function LoginSignUpForm(props) {
             <Form.Group className='mt-3'>
                 <Form.Label><span className='field-required'>* </span>Password</Form.Label>
                 {formType == "login" ?
-                    <Form.Control  className="todo-field" size="lg" type="password" name={"password"} value={loginFields.password} onChange={handleChange} placeholder='Enter Password...' /> :
-                    <Form.Control  className="todo-field" size="lg" type="password" name={"password"} value={signUpFields.password} onChange={handleChange} placeholder='Enter Password...' />
+                    <Form.Control className="todo-field" size="lg" type="password" name={"password"} value={loginFields.password} onChange={handleChange} placeholder='Enter Password...' /> :
+                    <Form.Control className="todo-field" size="lg" type="password" name={"password"} value={signUpFields.password} onChange={handleChange} placeholder='Enter Password...' />
                 }
             </Form.Group>
 
-            <Form.Text className='field-required'>{alertMessage}</Form.Text>
+            <Form.Text className='field-required'>{errorMessage}</Form.Text>
 
             {formType == "login" ?
                 <button className='btn btn-primary mt-4 mb-2' onClick={onSubmit} >Login</button> :
@@ -146,11 +179,11 @@ function LoginSignUpForm(props) {
             }
 
             {formType == "login" ?
-                <button onClick={() => { setFormType("signup"); }} className='btn btn-outline-warning mt-3 mb-2'>Sign Up</button> :
-                <button onClick={() => { setFormType("login"); }} className='btn btn-outline-warning mt-3 mb-2'>Back To Login</button>
+                <button onClick={() => { setFormType("signup"); setErrorMessage(""); }} className='btn btn-outline-warning mt-3 mb-2'>Sign Up</button> :
+                <button onClick={() => { setFormType("login"); setErrorMessage(""); }} className='btn btn-outline-warning mt-3 mb-2'>Back To Login</button>
             }
         </Container>
     );
 }
 
-export default LoginSignUpForm
+export default LoginSignUpForm;

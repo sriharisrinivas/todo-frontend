@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+.alert-container {
+    position: absolute;
+    z-index: 2;
+    position: absolute;
+    width: 80%;
+    left: 12%;
+    z-index: 2;
+}
+
 i {
     cursor: pointer;
 }

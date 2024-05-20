@@ -1,5 +1,7 @@
 export const CONSTANTS = {
     SERVICE_URL: "https://todo-p6ov.onrender.com"
+    // SERVICE_URL: "http://localhost:3001"
+
 }
 
 export const API_END_POINTS = {

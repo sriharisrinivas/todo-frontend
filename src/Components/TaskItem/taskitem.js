@@ -5,6 +5,7 @@ import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
 import { API_END_POINTS, CONSTANTS } from '../../config';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
 import { useDispatch } from 'react-redux';
+import { startLoaderAction } from '../../Redux/Action/LoaderAction';
 
 
 function TaskItem({ item }) {
@@ -43,8 +44,11 @@ function TaskItem({ item }) {
             body: JSON.stringify(payload)
         };
 
-        dispatch(fetchTodos());
+        dispatch(startLoaderAction())
         await fetch(url, options);
+        dispatch(startLoaderAction())
+        dispatch(fetchTodos());
+        
     };
 
     const onToggleStatus = (item) => {
