@@ -1,5 +1,6 @@
 .header-container {
     height: 8vh;
+    /* min-height: 8vh; */
 }
 
 .header-container i {
