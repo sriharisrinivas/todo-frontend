@@ -4,8 +4,17 @@ import { Button, Col, Form, NavLink, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { updateContentContainerHeight } from '../../Redux/Action/SideBarAction';
 import { useDispatch } from 'react-redux';
+import { fetchMasters } from '../../Redux/Action/TodosAction';
 
 function SideBar() {
+
+    useEffect(() => {
+        dispatch(fetchMasters({ id: 1}));
+        dispatch(fetchMasters({ id: 2}));
+        dispatch(fetchMasters({ id: 3}));
+        dispatch(fetchMasters({ id: 4}));
+
+    }, []);
 
     const dispatch = useDispatch();
 
@@ -39,18 +48,21 @@ function SideBar() {
 
                 <CDBSidebarContent className="sidebar-content">
                     <CDBSidebarMenu>
-                        <NavLink exact to="/home" activeClassName="activeClicked">
+                        <NavLink exact as = {Link} to="/home" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="columns">Home</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/home" activeClassName="activeClicked">
+                        {/* <NavLink exact as = {Link} to="/addNewTask" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="columns">Add New Task</CDBSidebarMenuItem>
-                        </NavLink>
-                        <NavLink exact to="/home" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">All Tasks</CDBSidebarMenuItem>
-                        </NavLink>
-                        {/* <NavLink exact to="/completedTasks" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Completed Tasks</CDBSidebarMenuItem>
                         </NavLink> */}
+                        <NavLink exact as = {Link} to="/myTasks" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="table">My Tasks</CDBSidebarMenuItem>
+                        </NavLink>
+                        <NavLink exact as = {Link} to="/completedTasks" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="user">Completed Tasks</CDBSidebarMenuItem>
+                        </NavLink>
+                        <NavLink exact as = {Link} to="/about" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="user">About</CDBSidebarMenuItem>
+                        </NavLink>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
 

@@ -86,7 +86,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
             </div>
             <Collapse in={open}>
                 <Row>
-                    <Col className='card task-card'>
+                    <Col className='card task-card' style={{ padding: "20px" }}>
 
                         <Form.Group>
                             <Form.Label><span className='field-required'>* </span>Task</Form.Label>

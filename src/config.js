@@ -7,6 +7,7 @@ export const CONSTANTS = {
 export const API_END_POINTS = {
     CREATE_USER: '/createUser/',
     LOGIN: '/login/',
+    GET_STATUSES: '/getStatuses/',
     CREATE_TODO: "/createTodo/",
     UPDATE_TODO: "/updateTodo/",
     FETCH_TODOS: "/todos/"

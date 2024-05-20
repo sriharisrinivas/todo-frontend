@@ -15,7 +15,7 @@ function TaskList() {
 
     return (
         <>
-            <Form.Text className='task-main-title'>All Tasks</Form.Text>
+            <Form.Text className='task-main-title'>My Tasks</Form.Text>
             <Row className='card task-card mt-2 mb-2'>
                 <Col className="task-list-container">
 

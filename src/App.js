@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,11 +5,11 @@ import Home from './Components/Home/home';
 import { Bars } from 'react-loader-spinner';
 import { BrowserRouter, Route, Switch, Routes } from 'react-router-dom';
 import Login from './Components/Login/Login';
-import { store } from './Redux/store';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AlertDismissible from './Components/Alert/AlertMessage';
-import { useEffect } from 'react';
-import { updateContentContainerHeight } from './Redux/Action/SideBarAction';
+import AboutPage from './Components/AboutPage/AboutPage';
+import AllTasksPage from './Components/AllTasksPage/AllTasksPage';
+import AddNewTaskPage from './Components/AddNewTaskPage/AddNewTaskPage';
 
 function App() {
   const alertMessaage = useSelector(state => state.AlertMessageReducer);
@@ -18,7 +17,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* {loaderState.loading == true &&
+      {loaderState.loading == true &&
         <div style={{ position: "relative" }}>
           <Bars
             height="100vh"
@@ -30,16 +29,20 @@ function App() {
             visible={true}
           />
         </div>
-      } */}
+      }
 
       {/* <Home /> */}
       {/* <Login /> */}
-      {/* <div className="alert-container">
+      <div className="alert-container">
         <AlertDismissible {...alertMessaage} />
-      </div> */}
+      </div>
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/addNewTask" element={<AddNewTaskPage />} />
+        <Route exact path="/myTasks" element={<AllTasksPage />} />
+        <Route exact path="/about" element={<AboutPage />} />
+        <Route exact path="/completedTasks" element={<AllTasksPage />} />
       </Routes>
     </BrowserRouter>
   );
