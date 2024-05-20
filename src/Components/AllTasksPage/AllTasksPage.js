@@ -48,7 +48,7 @@ function AllTasksPage() {
         <div>
             <Header />
 
-            <div className='d-flex' style={{ height: "92vh" }}>
+            <div className='d-flex' style={{ height: "92vh", marginBottom: "75px" }}>
                 <SideBar />
                 <Row className="main-content-container" style={{ width: contentDynamicHeight + "%" }}>
                     <Col className='content-container pt-3'>
@@ -94,7 +94,7 @@ function AllTasksPage() {
                 </Row>
             </div>
 
-            <div>
+            <div className='footer-main-container'>
                 <Footer />
             </div>
         </div>
