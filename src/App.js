@@ -18,13 +18,13 @@ function App() {
   return (
     <BrowserRouter>
       {loaderState.loading == true &&
-        <div style={{}}>
+        <div style={{ position: "relative"}}>
           <Bars
             height="100vh"
             width="80"
             color="#f7931e"
             ariaLabel="bars-loading"
-            wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", left: "50%", zIndex: 9999 }}
             wrapperClass=""
             visible={true}
           />
