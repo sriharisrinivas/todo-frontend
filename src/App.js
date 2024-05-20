@@ -13,20 +13,23 @@ import AlertDismissible from './Components/Alert/AlertMessage';
 function App() {
   const alertMessaage = useSelector(state => state.AlertMessageReducer);
   const loaderState = useSelector(state => state.loaderReducer);
-  console.log("🚀 ~ App ~ loaderState:", loaderState)
+  console.log("🚀 ~ App ~ loaderState:", loaderState);
 
   return (
     <BrowserRouter>
       {loaderState.loading == true &&
-        <Bars
-          height="100vh"
-          width="80"
-          color="#f7931e"
-          ariaLabel="bars-loading"
-          wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-          wrapperClass=""
-          visible={true}
-        />}
+        <div style={{ position: "relative"}}>
+          <Bars
+            height="100vh"
+            width="80"
+            color="#f7931e"
+            ariaLabel="bars-loading"
+            wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", left: "50%" }}
+            wrapperClass=""
+            visible={true}
+          />
+        </div>
+      }
 
       {/* <Home /> */}
       {/* <Login /> */}

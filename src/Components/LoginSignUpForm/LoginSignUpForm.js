@@ -57,8 +57,8 @@ function LoginSignUpForm(props) {
         };
         let url = CONSTANTS.SERVICE_URL + API_END_POINTS.CREATE_USER;
         dispatch(startLoaderAction());
-        let parsedResponse = await response.json();
         let response = await fetch(url, options);
+        let parsedResponse = await response.json();
         dispatch(stopLoaderAction());
 
         if (response.status == 200) {
@@ -91,16 +91,14 @@ function LoginSignUpForm(props) {
         dispatch(stopLoaderAction());
         if (response.status == 200) {
             setErrorMessage("");
-            dispatch(renderAlertMessageAction({
-                message: "Login SuccessFul. Redirecting to home page in couple of seconds",
-                heading: "Login",
-                show: true
-            }));
-            removeAlertMessage();
+            // dispatch(renderAlertMessageAction({
+            //     message: "Login SuccessFul. Redirecting to home page in couple of seconds",
+            //     heading: "Login",
+            //     show: true
+            // }));
+            // removeAlertMessage();
             sessionStorage.setItem("token", parsedResponse.jwtToken);
-            setTimeout(() => {
-                navigate("/home");
-            }, 2000);
+            navigate("/home");
             setLoginFields(initialLoginFields);
         } else {
             setErrorMessage(parsedResponse.message);
@@ -109,6 +107,7 @@ function LoginSignUpForm(props) {
     };
 
     const onSubmit = (e) => {
+        setErrorMessage("")
         e.preventDefault();
         if (formType == "login") {
             loginUser();
