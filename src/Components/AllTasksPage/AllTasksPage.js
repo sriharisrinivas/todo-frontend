@@ -8,6 +8,7 @@ import TaskList from '../TaskList/tasklist';
 import { Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
+import Footer from '../Footer/Footer';
 
 const initialFields = {
     "sortBySeverity": "ASC",
@@ -91,6 +92,10 @@ function AllTasksPage() {
                         <TaskList />
                     </Col>
                 </Row>
+            </div>
+
+            <div>
+                <Footer />
             </div>
         </div>
 

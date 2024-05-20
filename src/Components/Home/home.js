@@ -4,6 +4,7 @@ import "./home.css";
 import ContentContainer from '../ContentContainer/ContentContainer';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
+import Footer from '../Footer/Footer';
 
 
 function Home() {
@@ -11,9 +12,13 @@ function Home() {
         <div>
             <Header />
 
-            <div className='d-flex' style={{ height: "92vh" }}>
+            <div className='d-flex ' style={{ height: "92vh" }}>
                 <SideBar />
                 <ContentContainer />
+            </div>
+
+            <div>
+                <Footer />
             </div>
         </div>
 

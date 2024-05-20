@@ -6,6 +6,7 @@ import SideBar from '../SideBar/SideBar';
 import { useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
+import Footer from '../Footer/Footer';
 
 
 function AddNewTaskPage() {
@@ -23,6 +24,10 @@ function AddNewTaskPage() {
                         <AddTaskComponent />
                     </Col>
                 </Row>
+            </div>
+
+            <div>
+                <Footer />
             </div>
         </div>
 

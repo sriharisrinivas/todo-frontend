@@ -121,13 +121,13 @@ function TaskItem({ item }) {
                     } */}
                     {/* <button disabled={item["STATUS"] != 1} className='task-edit-btn btn btn-primary' onClick={() => { onEditTask(item); }}>Edit</button> */}
 
-                    {item["STATUS"] != 1 &&
+                    {item["STATUS"] != 3 &&
                         <div className='ms-2 mt-1'>
                             <i disabled={item["STATUS"] != 1} className='fa fa-edit mt-1' onClick={() => { onEditTask(item); }}></i>
                         </div>
                     }
 
-                    {item["STATUS"] != 3 &&
+                    {item["STATUS"] == 1 &&
                         <div className='ms-2 mt-1'>
                             <i className='fa fa-trash mt-1' onClick={() => { onDeleteTask(item); }}></i>
                         </div>

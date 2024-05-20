@@ -62,7 +62,7 @@ export const fetchFilterOptionsAction = payload => {
 /* New Method fetching status with filters */
 
 export const defaultPayload = {
-    "sortBySeverity": "ASC",
+    "sortBySeverity": "DESC",
     "status": "1,2,3",
     "search": '',
     "category": '1,2'

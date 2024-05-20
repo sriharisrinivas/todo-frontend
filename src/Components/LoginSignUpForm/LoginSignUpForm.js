@@ -81,6 +81,10 @@ function LoginSignUpForm(props) {
     };
 
     const loginUser = async () => {
+        if (loginFields.userName == '' || loginFields.password == '') {
+            setErrorMessage("Please Enter Mandatory Fields.")
+            return;
+        }
         let options = {
             method: 'POST',
             headers: {
