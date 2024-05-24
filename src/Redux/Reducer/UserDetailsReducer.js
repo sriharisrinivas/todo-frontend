@@ -9,7 +9,7 @@ export const userDetailsReducer = (state = initialState, action) => {
         case REDUX_CONSTANTS.UPDATE_USER_DETAILS:
             return { ...state, ...action.payload}
         default:
-            return {...initialState }
+            return {...state }
 
     }
 } 

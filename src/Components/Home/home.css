@@ -108,6 +108,12 @@ i {
     display: none;
 }
 
+.legend-box {
+    width: 15px;
+    height: 15px;
+    margin-top: 8px;
+    margin-left: 10px;
+}
 
 .completed-tasks-container {
     background-color: #ACD793;

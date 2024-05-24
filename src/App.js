@@ -42,7 +42,7 @@ function App() {
         <Route exact path="/addNewTask" element={<AddNewTaskPage />} />
         <Route exact path="/myTasks" element={<AllTasksPage />} />
         <Route exact path="/about" element={<AboutPage />} />
-        <Route exact path="/completedTasks" element={<AllTasksPage />} />
+        <Route exact path="/completedTasks" element={<AllTasksPage isCompleted = {true} />} />
       </Routes>
     </BrowserRouter>
   );

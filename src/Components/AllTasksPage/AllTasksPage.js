@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoryAction, fetchStatusAction, fetchTodos } from '../../Redux/Action/TodosAction';
 import Footer from '../Footer/Footer';
 import { REDUX_CONSTANTS } from '../../Redux/reduxConstants';
+import { todosInitialState } from '../../Redux/Reducer/todosListReducer';
 
-function AllTasksPage() {
+function AllTasksPage({ isCompleted }) {
     let fields = useSelector(state => state.todosListReducer.searchObj);
 
     const [open, setOpen] = useState(false);
@@ -86,13 +87,18 @@ function AllTasksPage() {
     useEffect(() => {
         let updatedFields = { ...fields };
 
+        if (isCompleted) {
+            updatedFields = todosInitialState.searchObj;
+            updatedFields.status="2"
+        }
+
         let timeInterval = setTimeout(async () => {
             dispatch(fetchTodos(updatedFields));
         }, 1000);
 
         return () => clearTimeout(timeInterval);
 
-    }, [fields, statusList, categoriesList]);
+    }, [fields, statusList, categoriesList, isCompleted]);
 
     useEffect(() => {
         dispatch(dispatch({

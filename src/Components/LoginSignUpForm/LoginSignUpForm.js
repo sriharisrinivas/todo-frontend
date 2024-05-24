@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeRenderAlertMsgAction, renderAlertMessageAction } from '../../Redux/Action/AlertMessageAction';
 import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
+import { REDUX_CONSTANTS } from '../../Redux/reduxConstants';
 // import { useHistory } from 'react-router-dom';
 
 const initialLoginFields = {
@@ -99,6 +100,7 @@ function LoginSignUpForm(props) {
         dispatch(stopLoaderAction());
         if (response.status == 200) {
             setErrorMessage("");
+            getProfile(parsedResponse.jwtToken);
             // dispatch(renderAlertMessageAction({
             //     message: "Login SuccessFul. Redirecting to home page in couple of seconds",
             //     heading: "Login",
@@ -111,6 +113,25 @@ function LoginSignUpForm(props) {
         } else {
             setErrorMessage(parsedResponse.message);
         }
+    };
+
+    const getProfile = async (token) => {
+        dispatch(startLoaderAction());
+        let url = CONSTANTS.SERVICE_URL + API_END_POINTS.GET_PROFILE;
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                "Authorization": `Bearer ${token}`
+            }
+        };
+        let response = await fetch(url, options);
+        dispatch(stopLoaderAction());
+        response = await response.json();
+        dispatch({
+            type: REDUX_CONSTANTS.UPDATE_USER_DETAILS,
+            payload: response
+        });
     };
 
     const onSubmit = (e) => {

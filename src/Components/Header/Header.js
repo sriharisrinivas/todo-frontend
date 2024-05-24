@@ -16,6 +16,7 @@ function Header(props) {
     const [showChangePasswordPopup, setShowChangePasswordPopup] = useState(false);
 
     const userDetails = useSelector(state => state.userDetailsReducer);
+    console.log("🚀 ~ Header ~ userDetails:", userDetails)
 
     const onLogout = () => {
         sessionStorage.removeItem("token");
@@ -25,29 +26,6 @@ function Header(props) {
     const onChangePassword = () => {
         setShowChangePasswordPopup(true);
     };
-
-    const getProfile = async () => {
-        dispatch(startLoaderAction());
-        let url = CONSTANTS.SERVICE_URL + API_END_POINTS.GET_PROFILE;
-        let options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-            }
-        };
-        let response = await fetch(url, options);
-        dispatch(stopLoaderAction());
-        response = await response.json();
-        dispatch({
-            type: REDUX_CONSTANTS.UPDATE_USER_DETAILS,
-            payload: response
-        });
-    };
-
-    useEffect(() => {
-        getProfile();
-    }, []);
 
     const darkModeState = false; //useSelector(state => state.darkModeReducer.isDarkMode);
 

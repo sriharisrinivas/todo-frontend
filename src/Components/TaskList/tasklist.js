@@ -11,7 +11,27 @@ function TaskList() {
 
     return (
         <>
-            <Form.Text className='task-main-title'>My Tasks</Form.Text>
+            <Row>
+                <Col sm="12">
+                    <Form.Text className='task-main-title'>My Tasks</Form.Text>
+                </Col>
+
+                <Col className='d-flex'>
+                    <Form.Text className=''>Pending</Form.Text>
+                    <div className='pending-tasks-container legend-box'></div>
+                </Col>
+
+                <Col className='d-flex'>
+                    <Form.Text className=''>Completed</Form.Text>
+                    <div className='completed-tasks-container legend-box'></div>
+                </Col>
+
+                <Col className='d-flex'>
+                    <Form.Text className=''>Deleted</Form.Text>
+                    <div className='deleted-tasks-container legend-box'></div>
+                </Col>
+
+            </Row>
             <Row className='card task-card mt-2 mb-2'>
                 <Col className="task-list-container">
 

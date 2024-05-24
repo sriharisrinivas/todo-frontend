@@ -1,6 +1,6 @@
 import { REDUX_CONSTANTS } from "../reduxConstants";
 
-const initialState = {
+export const todosInitialState = {
     todosList: [],
     categoriesList: [],
     statusList: [],
@@ -14,7 +14,7 @@ const initialState = {
     }
 };
 
-export const todosListReducer = (state = initialState, action) => {
+export const todosListReducer = (state = todosInitialState, action) => {
     switch (action.type) {
         case REDUX_CONSTANTS.FETCH_TODOS:
             return { ...state, todosList: action.payload };
@@ -29,7 +29,7 @@ export const todosListReducer = (state = initialState, action) => {
         case REDUX_CONSTANTS.UPDATE_FILTER_OBJ:
             return { ...state, searchObj: action.payload };
         case REDUX_CONSTANTS.CLEAR_FILTERS:
-            return {...state, searchObj: initialState.searchObj }
+            return {...state, searchObj: todosInitialState.searchObj }
         default:
             return { ...state };
     }
