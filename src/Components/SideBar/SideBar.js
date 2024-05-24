@@ -3,16 +3,42 @@ import { CDBSidebar, CDBSidebarContent, CDBSidebarFooter, CDBSidebarHeader, CDBS
 import { Button, Col, Form, NavLink, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { updateContentContainerHeight } from '../../Redux/Action/SideBarAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchMasters } from '../../Redux/Action/TodosAction';
+import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
+import { API_END_POINTS, CONSTANTS } from '../../config';
+import { REDUX_CONSTANTS } from '../../Redux/reduxConstants';
 
 function SideBar() {
+
+    const userDetails = useSelector(state => state.userDetailsReducer);
+
+    const getProfile = async () => {
+        dispatch(startLoaderAction());
+        let url = CONSTANTS.SERVICE_URL + API_END_POINTS.GET_PROFILE;
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+            }
+        };
+        let response = await fetch(url, options);
+        dispatch(stopLoaderAction());
+        response = await response.json();
+        dispatch({
+            type: REDUX_CONSTANTS.UPDATE_USER_DETAILS,
+            payload: response
+        });
+    };
+
 
     useEffect(() => {
         dispatch(fetchMasters({ id: 1}));
         dispatch(fetchMasters({ id: 2}));
         dispatch(fetchMasters({ id: 3}));
         dispatch(fetchMasters({ id: 4}));
+        getProfile()
 
     }, []);
 
@@ -70,9 +96,10 @@ function SideBar() {
                     <div
                         style={{
                             padding: '20px 5px',
+                            "text-transform": "capitalize"
                         }}
                     >
-                        User Name
+                        {userDetails.FIRST_NAME} {userDetails.LAST_NAME}
                     </div>
                 </CDBSidebarFooter>
             </CDBSidebar>

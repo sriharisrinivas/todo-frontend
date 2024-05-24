@@ -58,6 +58,7 @@ function AboutPage() {
 
                                 <ul>
                                     <li className='form-text'>View/Update Profile Picture</li>
+                                    <li className='form-text'>View/Update User Details</li>
                                     <li className='form-text'>Date Range Sorting.</li>
                                     {/* <li className='form-text'></li> */}
                                 </ul>
