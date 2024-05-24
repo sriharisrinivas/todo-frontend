@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Collapse, Form, Row } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import { API_END_POINTS, CONSTANTS } from '../../config';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
 import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
 
@@ -19,6 +19,8 @@ const initialFields = {
 function AddTaskComponent({ selectedRowDetails, callBack }) {
 
     const [fields, setFields] = useState(initialFields);
+
+    let searchObj = useSelector(state => state.todosListReducer.searchObj)
 
     const dispatch = useDispatch();
 
@@ -52,7 +54,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
         dispatch(stopLoaderAction());
 
         setFields(initialFields);
-        dispatch(fetchTodos());
+        dispatch(fetchTodos(searchObj));
 
         if (selectedRowDetails) {
             callBack();
@@ -149,7 +151,7 @@ function AddTaskComponent({ selectedRowDetails, callBack }) {
                             </div>
                         </Collapse>
                         <div>
-                            <button className='btn btn-outline-warning' onClick={onSubmitTask} >Submit</button>
+                            <button className='btn btn-outline-success' disabled={fields.title == ''} onClick={onSubmitTask} >Submit</button>
                         </div>
                     </Col>
                 </Row>

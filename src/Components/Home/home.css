@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.App {
+    /* color: #7091E6; */
+}
+
 .alert-container {
     position: absolute;
     z-index: 2;
@@ -104,6 +108,22 @@ i {
     display: none;
 }
 
+
+.completed-tasks-container {
+    background-color: #ACD793;
+    color: white;
+}
+
+.pending-tasks-container {
+    background-color: #FFC96F;
+    color: white;
+}
+
+.deleted-tasks-container {
+    background-color: #EE4E4E;
+    color: white;
+}
+
 .content-container {
     height: 92vh;
     padding: 0 15px 0px 40px;
@@ -138,7 +158,9 @@ i {
 
 .task-main-title,
 .login-main-title {
+    font-weight: 700;
     font-size: clamp(16px, 2vw, 25px);
+    color: #7091e6;
 }
 
 .field-required {
@@ -161,6 +183,12 @@ i {
 
 .footer-container {
     display: none;
+    color: #7091E6;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.footer-container .form-text {
+    color: #7091E6;
 }
 
 .footer-container i {
@@ -181,8 +209,12 @@ i {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border: 1px solid cyan;
+        border: 1px solid #7091E6;
         border-radius: 30px;
+    }
+
+    .sidebar-and-content-container {
+        margin-bottom: 75px;
     }
 }
 

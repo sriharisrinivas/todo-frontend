@@ -16,7 +16,7 @@ function AddNewTaskPage() {
         <div>
             <Header />
 
-            <div className='d-flex' style={{ height: "92vh", marginBottom: "75px" }}>
+            <div className='d-flex sidebar-and-content-container' style={{ height: "92vh" }}>
                 <SideBar />
 
                 <Row className="main-content-container" style={{ width: contentDynamicHeight + "%" }}>

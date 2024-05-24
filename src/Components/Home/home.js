@@ -12,7 +12,7 @@ function Home() {
         <div>
             <Header />
 
-            <div className='d-flex' style={{ height: "92vh", marginBottom: "75px" }}>
+            <div className='d-flex sidebar-and-content-container' style={{ height: "92vh" }}>
                 <SideBar />
                 <ContentContainer />
             </div>

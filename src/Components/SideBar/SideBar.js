@@ -39,7 +39,7 @@ function SideBar() {
 
     return (
         <div className='sidebar-todo' style={{ display: 'flex', overflow: 'scroll initial' }}>
-            <CDBSidebar textColor="#fff" backgroundColor="#333" id="sidebar" >
+            <CDBSidebar textColor="#333" backgroundColor="#f8f9fa" id="sidebar" >
                 <CDBSidebarHeader prefix={<i onClick={onExpandCollapseSideBar} className="fa fa-bars fa-large"></i>}>
                     <a href="/home" className="text-decoration-none" style={{ color: 'inherit' }}>
                         Sidebar

@@ -101,7 +101,7 @@ export const fetchMasters = (payload) => {
         let response = await fetch(url, options);
         dispatch(stopLoaderAction());
         response = await response.json();
-
+        response.forEach(item => item.selected = true)
 
         switch (payload.id) {
             case 1:

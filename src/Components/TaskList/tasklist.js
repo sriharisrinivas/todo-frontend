@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import TaskItem from '../TaskItem/taskitem';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTodos, fetchTodosOnSuccess } from '../../Redux/Action/TodosAction';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function TaskList() {
 
     const todosList = useSelector(state => state.todosListReducer.todosList);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchTodos());
-    }, []);
 
     return (
         <>
@@ -25,6 +21,15 @@ function TaskList() {
                             <TaskItem item={item} />
                             // </Col>
                         )}
+
+                        {todosList.length == 0 &&
+                            <div className='d-flex flex-column align-items-center'>
+                                <Form.Text className='mb-1'>No Tasks</Form.Text>
+                                <Link to="/home">
+                                    <button className='btn btn-outline-success'>Create Task</button>
+                                </Link>
+                            </div>
+                        }
                     </Row>
                 </Col>
             </Row>

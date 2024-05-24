@@ -10,5 +10,7 @@ export const API_END_POINTS = {
     GET_STATUSES: '/getStatuses/',
     CREATE_TODO: "/createTodo/",
     UPDATE_TODO: "/updateTodo/",
-    FETCH_TODOS: "/todos/"
+    FETCH_TODOS: "/todos/",
+    GET_PROFILE: "/profile/",
+    CHANGE_PASSWORD: "/changePassword/"
 }

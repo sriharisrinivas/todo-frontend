@@ -4,7 +4,7 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
 import { API_END_POINTS, CONSTANTS } from '../../config';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLoaderAction } from '../../Redux/Action/LoaderAction';
 
 
@@ -13,6 +13,8 @@ function TaskItem({ item }) {
     const dispatch = useDispatch();
 
     const [selectedRowDetails, setSelectedRowDetails] = useState(undefined);
+
+    let searchObj = useSelector(state => state.todosListReducer.searchObj)
 
     const [show, setShow] = useState(false);
 
@@ -44,11 +46,11 @@ function TaskItem({ item }) {
             body: JSON.stringify(payload)
         };
 
-        dispatch(startLoaderAction())
+        dispatch(startLoaderAction());
         await fetch(url, options);
-        dispatch(startLoaderAction())
-        dispatch(fetchTodos());
-        
+        dispatch(startLoaderAction());
+        dispatch(fetchTodos(searchObj));
+
     };
 
     const onToggleStatus = (item) => {
@@ -82,7 +84,10 @@ function TaskItem({ item }) {
             </Modal>
 
 
-            <Row className={`task-item-container ${item.STATUS == 2 || item.STATUS == 3 ? "dynamic-task-item-container" : ''}`}>
+            {/* <Row className={`task-item-container ${item.STATUS == 2 || item.STATUS == 3 ? "dynamic-task-item-container" : ''}`}> */}
+            <Row className={`task-item-container ${item.STATUS == 1 ? "pending-tasks-container" :
+                item.STATUS == 2 ? "completed-tasks-container dynamic-task-item-container" :
+                    'deleted-tasks-container dynamic-task-item-container'}`}>
                 <Col className='d-flex align-items-center task-name-container'>
                     <Form.Check disabled={item["STATUS"] == 3} checked={item["STATUS"] == 2} onChange={() => onToggleStatus(item)} />
                     <p>{item["TITLE"]}</p>

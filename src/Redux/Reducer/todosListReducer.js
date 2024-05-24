@@ -5,7 +5,13 @@ const initialState = {
     categoriesList: [],
     statusList: [],
     severityList: [],
-    sortoptions: []
+    sortoptions: [],
+    searchObj: {
+        "sortBySeverity": "DESC",
+        "status": "1,2,3",
+        "search": '',
+        "category": '1,2'
+    }
 };
 
 export const todosListReducer = (state = initialState, action) => {
@@ -20,6 +26,10 @@ export const todosListReducer = (state = initialState, action) => {
             return { ...state, severityList: action.payload };
         case REDUX_CONSTANTS.FETCH_SORT_OPTIONS:
             return { ...state, sortoptions: action.payload };
+        case REDUX_CONSTANTS.UPDATE_FILTER_OBJ:
+            return { ...state, searchObj: action.payload };
+        case REDUX_CONSTANTS.CLEAR_FILTERS:
+            return {...state, searchObj: initialState.searchObj }
         default:
             return { ...state };
     }

@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
 import TaskList from '../TaskList/tasklist';
 import { Col, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTodos } from '../../Redux/Action/TodosAction';
 
 function ContentContainer() {
 
-    let contentDynamicHeight = useSelector(state => state.SideBarReducer.dynamicContentContainerHeight)
+    let contentDynamicHeight = useSelector(state => state.SideBarReducer.dynamicContentContainerHeight);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchTodos());
+    }, []);
 
     return (
         <>
