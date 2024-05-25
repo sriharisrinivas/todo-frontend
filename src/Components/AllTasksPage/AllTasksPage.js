@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import "./allTasksPage.css";
-import ContentContainer from '../ContentContainer/ContentContainer';
+import DatePicker from "react-datepicker";
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import TaskList from '../TaskList/tasklist';
@@ -15,7 +15,7 @@ import { todosInitialState } from '../../Redux/Reducer/todosListReducer';
 function AllTasksPage({ isCompleted }) {
     let fields = useSelector(state => state.todosListReducer.searchObj);
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -29,6 +29,12 @@ function AllTasksPage({ isCompleted }) {
     const handleChange = (e) => {
         let updatedFields = { ...fields };
         updatedFields[e.target.name] = e.target.value;
+        updateFields(updatedFields);
+    };
+
+    const handleDateChange = (date, fieldName) => {
+        let updatedFields = { ...fields };
+        updatedFields[fieldName] = new Date(date);
         updateFields(updatedFields);
     };
 
@@ -89,7 +95,7 @@ function AllTasksPage({ isCompleted }) {
 
         if (isCompleted) {
             updatedFields = todosInitialState.searchObj;
-            updatedFields.status="2"
+            updatedFields.status = "2";
         }
 
         let timeInterval = setTimeout(async () => {
@@ -103,8 +109,8 @@ function AllTasksPage({ isCompleted }) {
     useEffect(() => {
         dispatch(dispatch({
             type: REDUX_CONSTANTS.CLEAR_FILTERS
-        }))
-    }, [])
+        }));
+    }, []);
 
     return (
         <div>
@@ -115,14 +121,13 @@ function AllTasksPage({ isCompleted }) {
                 <Row className="main-content-container" style={{ width: contentDynamicHeight + "%" }}>
                     <Col className='content-container pt-3'>
                         <div className='text-end' style={{
-                            position: "absolute",
-                            right: "18px"
+                            position: "relative"
                         }}>
-                            <i class="fa-solid fa-filter" style={{ color: "#7091E6" }} onClick={() => { setOpen(!open); }}></i>
+                            <i class="fa-solid fa-filter filter-icon" style={{ color: "#7091E6" }} onClick={() => { setOpen(!open); }}></i>
                         </div>
 
                         <Collapse in={open}>
-                            <Row className='mt-3 mb-5' style={{ gap: "10px"}}>
+                            <Row className='mt-3 mb-5 search-filters-container'>
                                 <Col sm={12} md={6}>
                                     <Form.Group className=''>
                                         <Form.Label>Search Task</Form.Label>
@@ -133,13 +138,55 @@ function AllTasksPage({ isCompleted }) {
                                     </Form.Group>
                                 </Col>
 
-                                <Col sm={12} md={6}>
+                                <Col sm={6}>
                                     <Form.Group>
-                                        <Form.Label>Severity</Form.Label>
-                                        <Form.Select className="todo-field" name={"sortBySeverity"} value={fields.sortBySeverity} onChange={handleChange} size='lg'>
-                                            {sortoptions.map(item => <option value={item["DT_CODE"]}>{item["DT_DESCRIPTION"]}</option>)}
-                                        </Form.Select>
+                                        <Form.Label>From Date</Form.Label> <br />
+                                        <DatePicker
+                                            showIcon
+                                            todayButton="Today"
+                                            dateFormat={"dd/MM/YYYY"}
+                                            toggleCalendarOnIconClick
+                                            selected={fields.fromDate}
+                                            onChange={(date) => handleDateChange(date, "fromDate")}
+                                        >
+                                        </DatePicker>
                                     </Form.Group>
+                                </Col>
+
+                                <Col sm={6}>
+                                    <Form.Group>
+                                        <Form.Label>To Date</Form.Label> <br />
+                                        <DatePicker
+                                            showIcon
+                                            dateFormat={"dd/MM/YYYY"}
+                                            toggleCalendarOnIconClick
+                                            selected={fields.toDate}
+                                            onChange={(date) => handleDateChange(date, "toDate")}
+                                        />
+                                    </Form.Group>
+                                </Col>
+
+                                <Col sm={12} md={6}>
+                                    <Row>
+                                        <Col>
+                                            <Form.Group>
+                                                <Form.Label>Date Sort</Form.Label>
+                                                <Form.Select className="todo-field" name={"sortByDate"} value={fields.sortByDate} onChange={handleChange} size='lg'>
+                                                    {sortoptions.map(item => <option value={item["DT_CODE"]}>{item["DT_DESCRIPTION"]}</option>)}
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </Col>
+
+                                        <Col>
+                                            <Form.Group>
+                                                <Form.Label>Severity</Form.Label>
+                                                <Form.Select className="todo-field" name={"sortBySeverity"} value={fields.sortBySeverity} onChange={handleChange} size='lg'>
+                                                    {sortoptions.map(item => <option value={item["DT_CODE"]}>{item["DT_DESCRIPTION"]}</option>)}
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </Col>
+
+                                    </Row>
                                 </Col>
 
                                 <Row>

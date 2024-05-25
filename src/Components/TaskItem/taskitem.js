@@ -5,7 +5,7 @@ import AddTaskComponent from '../AddTaskComponent/AddTaskComponent';
 import { API_END_POINTS, CONSTANTS } from '../../config';
 import { fetchTodos } from '../../Redux/Action/TodosAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { startLoaderAction } from '../../Redux/Action/LoaderAction';
+import { startLoaderAction, stopLoaderAction } from '../../Redux/Action/LoaderAction';
 
 
 function TaskItem({ item }) {
@@ -14,7 +14,7 @@ function TaskItem({ item }) {
 
     const [selectedRowDetails, setSelectedRowDetails] = useState(undefined);
 
-    let searchObj = useSelector(state => state.todosListReducer.searchObj)
+    let searchObj = useSelector(state => state.todosListReducer.searchObj);
 
     const [show, setShow] = useState(false);
 
@@ -48,7 +48,7 @@ function TaskItem({ item }) {
 
         dispatch(startLoaderAction());
         await fetch(url, options);
-        dispatch(startLoaderAction());
+        dispatch(stopLoaderAction());
         dispatch(fetchTodos(searchObj));
 
     };
@@ -108,7 +108,7 @@ function TaskItem({ item }) {
                     <Form.Text>{item["CATEGORY_DESC"]}</Form.Text>
                 </Col>
 
-                <Col className='task-header-and-value-wrapper'>
+                {/* <Col className='task-header-and-value-wrapper'>
                     {item["TASK_DATE"] && <Form.Text className='task-heading'>Task Date: </Form.Text>}
 
                     {
@@ -116,7 +116,7 @@ function TaskItem({ item }) {
                             <Form.Text>{moment(item["TASK_DATE"]).format("DD-MM-YYYY")}</Form.Text> :
                             <Form.Text>&nbsp;</Form.Text>
                     }
-                </Col>
+                </Col> */}
 
                 <Col className='d-flex align-items-center justify-content-end'>
                     {/* {
@@ -139,6 +139,12 @@ function TaskItem({ item }) {
                     }
 
                 </Col>
+                {/* {
+                    item["STATUS"] == 1 &&
+                    <Col sm="12">
+                        <Form.Text>Due on {moment(item["TASK_DATE"]).format("DD/MM/YYYY")}</Form.Text>
+                    </Col>
+                } */}
             </Row>
         </>
 

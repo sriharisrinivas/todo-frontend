@@ -10,7 +10,10 @@ export const todosInitialState = {
         "sortBySeverity": "DESC",
         "status": "1,2,3",
         "search": '',
-        "category": '1,2'
+        "category": '1,2',
+        "fromDate": '1800-01-01T12:00:00.000Z',
+        "toDate": new Date(),
+        "sortByDate": "DESC"
     }
 };
 

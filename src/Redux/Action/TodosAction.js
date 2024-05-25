@@ -2,6 +2,8 @@ import { API_END_POINTS, CONSTANTS } from "../../config";
 import { REDUX_CONSTANTS } from "../reduxConstants";
 import axios from "axios";
 import { startLoaderAction, stopLoaderAction } from "./LoaderAction";
+import { todosInitialState } from "../Reducer/todosListReducer";
+import moment from "moment";
 
 export const fetchTodosOnSuccess = payload => {
     return {
@@ -61,13 +63,6 @@ export const fetchFilterOptionsAction = payload => {
 
 /* New Method fetching status with filters */
 
-export const defaultPayload = {
-    "sortBySeverity": "DESC",
-    "status": "1,2,3",
-    "search": '',
-    "category": '1,2'
-};
-
 export const fetchTodos = (payload) => {
     return async function (dispatch) {
         dispatch(startLoaderAction());
@@ -78,11 +73,12 @@ export const fetchTodos = (payload) => {
                 'Content-Type': 'application/json;charset=utf-8',
                 "Authorization": `Bearer ${sessionStorage.getItem("token")}`
             },
-            body: JSON.stringify(payload ? payload : defaultPayload)
+            body: JSON.stringify(payload ? payload : todosInitialState.searchObj)
         };
         let response = await fetch(url, options);
         dispatch(stopLoaderAction());
         response = await response.json();
+        response.forEach(item => item.formattedDueDate = moment(item["TASK_DATE"]).format("DD/MM/YYYY"))
         dispatch(fetchTodosOnSuccess(response));
     };
 };

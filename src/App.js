@@ -10,6 +10,7 @@ import AlertDismissible from './Components/Alert/AlertMessage';
 import AboutPage from './Components/AboutPage/AboutPage';
 import AllTasksPage from './Components/AllTasksPage/AllTasksPage';
 import AddNewTaskPage from './Components/AddNewTaskPage/AddNewTaskPage';
+import GridViewPage from './Components/GridViewPage/GridViewPage';
 
 function App() {
   const alertMessaage = useSelector(state => state.AlertMessageReducer);
@@ -42,7 +43,7 @@ function App() {
         <Route exact path="/addNewTask" element={<AddNewTaskPage />} />
         <Route exact path="/myTasks" element={<AllTasksPage />} />
         <Route exact path="/about" element={<AboutPage />} />
-        <Route exact path="/completedTasks" element={<AllTasksPage isCompleted = {true} />} />
+        <Route exact path="/gridView" element={<GridViewPage />} />
       </Routes>
     </BrowserRouter>
   );

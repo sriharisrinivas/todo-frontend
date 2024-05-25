@@ -75,7 +75,7 @@ function SideBar() {
                 <CDBSidebarContent className="sidebar-content">
                     <CDBSidebarMenu>
                         <NavLink exact as = {Link} to="/home" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="columns">Home</CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem icon="home">Home</CDBSidebarMenuItem>
                         </NavLink>
                         {/* <NavLink exact as = {Link} to="/addNewTask" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="columns">Add New Task</CDBSidebarMenuItem>
@@ -83,8 +83,8 @@ function SideBar() {
                         <NavLink exact as = {Link} to="/myTasks" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="table">My Tasks</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact as = {Link} to="/completedTasks" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="user">Completed Tasks</CDBSidebarMenuItem>
+                        <NavLink exact as = {Link} to="/gridView" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="table">Grid View</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact as = {Link} to="/about" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="user">About</CDBSidebarMenuItem>
