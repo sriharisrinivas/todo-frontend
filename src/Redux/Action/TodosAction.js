@@ -41,6 +41,13 @@ export const fetchFilterOptionsAction = payload => {
     };
 };
 
+export const fetchTransactionTypeAction = payload => {
+    return {
+        type: REDUX_CONSTANTS.FETCH_TRANSACTION_TYPE_LIST,
+        payload: payload
+    };
+};
+
 /* Old Method fetching status without filters */
 
 // export const fetchTodos = (payload) => {
@@ -111,6 +118,9 @@ export const fetchMasters = (payload) => {
                 break;
             case 4:
                 dispatch(fetchFilterOptionsAction(response));
+                break;
+            case 5:
+                dispatch(fetchTransactionTypeAction(response));
                 break;
             default:
         }

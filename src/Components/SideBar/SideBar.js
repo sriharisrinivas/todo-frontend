@@ -38,6 +38,7 @@ function SideBar() {
         dispatch(fetchMasters({ id: 2}));
         dispatch(fetchMasters({ id: 3}));
         dispatch(fetchMasters({ id: 4}));
+        dispatch(fetchMasters({ id: 5}));
         getProfile()
 
     }, []);
@@ -84,7 +85,10 @@ function SideBar() {
                             <CDBSidebarMenuItem icon="table">My Tasks</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact as = {Link} to="/gridView" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Grid View</CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem icon="list">Grid View</CDBSidebarMenuItem>
+                        </NavLink>
+                        <NavLink exact as = {Link} to="/cashbook" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="book">Cash Book</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact as = {Link} to="/about" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="user">About</CDBSidebarMenuItem>

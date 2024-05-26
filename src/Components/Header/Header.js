@@ -16,7 +16,6 @@ function Header(props) {
     const [showChangePasswordPopup, setShowChangePasswordPopup] = useState(false);
 
     const userDetails = useSelector(state => state.userDetailsReducer);
-    console.log("🚀 ~ Header ~ userDetails:", userDetails)
 
     const onLogout = () => {
         sessionStorage.removeItem("token");

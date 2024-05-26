@@ -6,6 +6,7 @@ export const todosInitialState = {
     statusList: [],
     severityList: [],
     sortoptions: [],
+    transactionTypeList: [],
     searchObj: {
         "sortBySeverity": "DESC",
         "status": "1,2,3",
@@ -29,6 +30,8 @@ export const todosListReducer = (state = todosInitialState, action) => {
             return { ...state, severityList: action.payload };
         case REDUX_CONSTANTS.FETCH_SORT_OPTIONS:
             return { ...state, sortoptions: action.payload };
+        case REDUX_CONSTANTS.FETCH_TRANSACTION_TYPE_LIST:
+            return { ...state, transactionTypeList: action.payload };
         case REDUX_CONSTANTS.UPDATE_FILTER_OBJ:
             return { ...state, searchObj: action.payload };
         case REDUX_CONSTANTS.CLEAR_FILTERS:

@@ -21,10 +21,16 @@ function Footer(props) {
                 <Form.Text>Grid View</Form.Text>
            </NavLink>
 
+           <NavLink exact as={Link} to="/cashbook" className='d-flex flex-column align-items-center footer-box'>
+                <i className='fa fa-book'></i>
+                <Form.Text>Cash Book</Form.Text>
+           </NavLink>
+           
            <NavLink exact as={Link} to="/about" className='d-flex flex-column align-items-center footer-box'>
                 <i className='fa fa-circle-exclamation'></i>
                 <Form.Text>About</Form.Text>
            </NavLink>
+
         </div>
     );
 }

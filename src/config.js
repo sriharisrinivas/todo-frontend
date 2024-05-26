@@ -12,5 +12,16 @@ export const API_END_POINTS = {
     UPDATE_TODO: "/updateTodo/",
     FETCH_TODOS: "/todos/",
     GET_PROFILE: "/profile/",
-    CHANGE_PASSWORD: "/changePassword/"
+    CHANGE_PASSWORD: "/changePassword/",
+    CREATE_CASHBOOK: "/createNewCashbook/",
+    GET_CASHBOOK_NAMES: '/getCashbookNames/',
+    CREATE_NEW_ENTRY: "/createNewEntry/",
+    UPDATE_ENTRY: '/updateEntry/',
+    GET_CASHBOOK_ENTRIES: '/getCashbookDetails/',
+    DELETE_ENTRY: "/deleteEntry/"
+}
+
+export const modes = {
+    SAVE: "SAVE",
+    UPDATE: "UPDATE"
 }

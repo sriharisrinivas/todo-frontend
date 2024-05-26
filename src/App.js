@@ -11,6 +11,7 @@ import AboutPage from './Components/AboutPage/AboutPage';
 import AllTasksPage from './Components/AllTasksPage/AllTasksPage';
 import AddNewTaskPage from './Components/AddNewTaskPage/AddNewTaskPage';
 import GridViewPage from './Components/GridViewPage/GridViewPage';
+import CashBook from './Components/CashBook/CashBook';
 
 function App() {
   const alertMessaage = useSelector(state => state.AlertMessageReducer);
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/myTasks" element={<AllTasksPage />} />
         <Route exact path="/about" element={<AboutPage />} />
         <Route exact path="/gridView" element={<GridViewPage />} />
+        <Route exact path="/cashbook" element={<CashBook />} />
       </Routes>
     </BrowserRouter>
   );
