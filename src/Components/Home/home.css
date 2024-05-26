@@ -262,7 +262,12 @@ i {
 
 .task-heading {
     /* display: none; */
+    color: white;
     font-weight: 500;
+}
+
+.task-value {
+    color: white;
 }
 
 .task-name-container {

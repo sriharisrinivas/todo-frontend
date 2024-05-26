@@ -95,17 +95,17 @@ function TaskItem({ item }) {
 
                 <Col className='task-header-and-value-wrapper'>
                     <Form.Text className='task-heading'>Severity: </Form.Text>
-                    <Form.Text>{item["SEVERITY_DESC"]}</Form.Text>
+                    <Form.Text className='task-value'>{item["SEVERITY_DESC"]}</Form.Text>
                 </Col>
 
                 <Col className='task-header-and-value-wrapper'>
                     <Form.Text className='task-heading'>Status: </Form.Text>
-                    <Form.Text>{item["STATUS_DESC"]}</Form.Text>
+                    <Form.Text className='task-value'>{item["STATUS_DESC"]}</Form.Text>
                 </Col>
 
                 <Col className='task-header-and-value-wrapper'>
                     <Form.Text className='task-heading'>Category: </Form.Text>
-                    <Form.Text>{item["CATEGORY_DESC"]}</Form.Text>
+                    <Form.Text className='task-value'>{item["CATEGORY_DESC"]}</Form.Text>
                 </Col>
 
                 {/* <Col className='task-header-and-value-wrapper'>
